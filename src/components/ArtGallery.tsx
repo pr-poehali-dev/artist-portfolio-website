@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
@@ -68,15 +67,11 @@ const ArtworkCard = ({ artwork }: { artwork: ArtworkProps }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-          whileHover={{ y: -10, transition: { duration: 0.3 } }}
-          className="cursor-pointer"
+        <div
+          className="cursor-pointer opacity-0 transform translate-y-10 animate-fadeInUp"
+          style={{animationDelay: `${artwork.id * 100}ms`}}
         >
-          <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow duration-300">
+          <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow">
             <CardContent className="p-0">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img 
@@ -91,7 +86,7 @@ const ArtworkCard = ({ artwork }: { artwork: ArtworkProps }) => {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </DialogTrigger>
       <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white rounded-lg">
         <div className="flex flex-col md:flex-row">
